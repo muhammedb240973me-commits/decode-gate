@@ -3,17 +3,17 @@
 // ========================================
 
 const SCRIPT_URL =
-    "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+    "https://script.google.com/macros/s/AKfycbzqg6lTuBBL-1etmb3mD73oKPZh0Q5eqLdN9Ahp5j7v_NhmzeSZpow_z2qOuiOdnWWXeA/exec";
 
 
 // Replace these with your actual WhatsApp
 // group invitation links.
 
 const BOYS_GROUP =
-    "https://chat.whatsapp.com/YOUR_BOYS_GROUP_LINK";
+    "https://chat.whatsapp.com/HON5ENECxTzD3eHO9seQNl";
 
 const GIRLS_GROUP =
-    "https://chat.whatsapp.com/YOUR_GIRLS_GROUP_LINK";
+    "https://chat.whatsapp.com/JLQ4GkJVvnX3iwTXCq1p26";
 
 
 // ========================================
