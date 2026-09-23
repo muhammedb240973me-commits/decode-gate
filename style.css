@@ -171,88 +171,62 @@ body {
 ================================ */
 
 .header {
-
     display: flex;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
 }
 
 
-.brand-small {
-
-    display: inline-block;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    letter-spacing: 1.5px;
-
-    color: var(--primary);
-
-    margin-bottom: 8px;
+.brand {
+    width: 100%;
 }
 
 
 h1 {
-
-    font-size: 42px;
-
-    line-height: 1.1;
-
-    letter-spacing: -1.5px;
+    font-size: 48px;
+    line-height: 1.05;
+    letter-spacing: -1.8px;
+    font-weight: 900;
 }
 
 
 h1 span {
-
     color: var(--primary);
 }
 
 
 .tagline {
-
-    margin-top: 7px;
+    margin-top: 10px;
 
     color: var(--muted);
 
-    font-size: 15px;
+    font-size: 16px;
 
     font-weight: 500;
+
+    letter-spacing: 0.2px;
 }
 
 
-.organizer {
-
-    text-align: right;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 3px;
-
-    color: var(--muted);
-
-    font-size: 11px;
-}
-
-
-.organizer strong {
+.event-date {
+    margin-top: 17px;
 
     color: var(--text);
 
-    font-size: 13px;
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+
+    text-align: center;
 }
 
 
-.organizer small {
+.event-date span {
+    color: var(--primary);
 
-    font-size: 11px;
+    margin: 0 5px;
 }
 
 
@@ -582,48 +556,41 @@ footer p {
 @media (max-width: 600px) {
 
     .page {
-
         padding: 25px 12px;
     }
 
     .card {
-
         padding: 28px 20px;
-
         border-radius: 18px;
     }
 
     .header {
-
-        flex-direction: column;
-
-        gap: 15px;
-    }
-
-    .organizer {
-
-        text-align: left;
+        text-align: center;
     }
 
     h1 {
+        font-size: 40px;
+        letter-spacing: -1.5px;
+    }
 
-        font-size: 36px;
+    .tagline {
+        font-size: 14px;
+    }
+
+    .event-date {
+        font-size: 13px;
     }
 
     .divider {
-
         margin: 24px 0;
     }
 
     .radio-container {
-
         gap: 8px;
     }
 
     .theme-toggle {
-
         top: 14px;
-
         right: 14px;
     }
 }
