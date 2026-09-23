@@ -1,13 +1,10 @@
+
 // ========================================
 // CONFIGURATION
 // ========================================
 
 const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbzqg6lTuBBL-1etmb3mD73oKPZh0Q5eqLdN9Ahp5j7v_NhmzeSZpow_z2qOuiOdnWWXeA/exec";
-
-
-// Replace these with your actual WhatsApp
-// group invitation links.
+    "https://script.google.com/macros/s/AKfycbx_vKlG0gPJKDkmfrt0CYcLGucuMaBsuILRK_LkhQGY6dVJ6HFKauZN8rKLP8pi-Qcy/exec";
 
 const BOYS_GROUP =
     "https://chat.whatsapp.com/HON5ENECxTzD3eHO9seQNl";
@@ -40,7 +37,7 @@ const themeToggle =
 
 
 // ========================================
-// THEME
+// THEME TOGGLE
 // ========================================
 
 const savedTheme =
@@ -107,9 +104,9 @@ form.addEventListener("submit", async (event) => {
     statusMessage.className = "status-message";
 
 
-    // ------------------------------
-    // Get values
-    // ------------------------------
+    // ------------------------------------
+    // Get form values
+    // ------------------------------------
 
     const fullName =
         document.getElementById("fullName")
@@ -130,23 +127,25 @@ form.addEventListener("submit", async (event) => {
 
     const course =
         document.getElementById("course")
-        .value;
+        .value.trim();
 
     const phone =
         document.getElementById("phone")
         .value.trim();
 
 
-    // ------------------------------
+    // ------------------------------------
     // Validation
-    // ------------------------------
+    // ------------------------------------
 
-    if (!fullName ||
+    if (
+        !fullName ||
         !district ||
         !collegeName ||
         !gender ||
         !course ||
-        !phone) {
+        !phone
+    ) {
 
         showError(
             "Please fill in all the required fields."
@@ -166,9 +165,9 @@ form.addEventListener("submit", async (event) => {
     }
 
 
-    // ------------------------------
+    // ------------------------------------
     // Loading state
-    // ------------------------------
+    // ------------------------------------
 
     submitButton.disabled = true;
 
@@ -178,76 +177,113 @@ form.addEventListener("submit", async (event) => {
     loader.classList.remove("hidden");
 
 
-    // ------------------------------
-    // Prepare data
-    // ------------------------------
+    // ------------------------------------
+    // Prepare form data
+    // ------------------------------------
 
     const formData = new URLSearchParams();
 
-    formData.append("fullName", fullName);
-    formData.append("district", district);
-    formData.append("collegeName", collegeName);
-    formData.append("gender", gender);
-    formData.append("course", course);
-    formData.append("phone", phone);
+    formData.append(
+        "fullName",
+        fullName
+    );
+
+    formData.append(
+        "district",
+        district
+    );
+
+    formData.append(
+        "collegeName",
+        collegeName
+    );
+
+    formData.append(
+        "gender",
+        gender
+    );
+
+    formData.append(
+        "course",
+        course
+    );
+
+    formData.append(
+        "phone",
+        phone
+    );
 
 
     try {
 
-        // ------------------------------
+        // --------------------------------
         // Send to Google Apps Script
-        // ------------------------------
+        // --------------------------------
 
         const response = await fetch(
             SCRIPT_URL,
             {
                 method: "POST",
 
-                headers: {
-                    "Content-Type":
-                        "application/x-www-form-urlencoded;charset=UTF-8"
-                },
-
-                body: formData.toString()
+                body: formData
             }
         );
 
 
-        const result =
-            await response.json();
+        const text =
+            await response.text();
+
+        console.log(
+            "Apps Script response:",
+            text
+        );
 
 
-        // ------------------------------
-        // Successful registration
-        // ------------------------------
+        let result;
+
+        try {
+
+            result =
+                JSON.parse(text);
+
+        } catch (error) {
+
+            console.error(
+                "Invalid Apps Script response:",
+                text
+            );
+
+            throw new Error(
+                "Invalid response from Google Apps Script."
+            );
+        }
+
+
+        // --------------------------------
+        // Registration successful
+        // --------------------------------
 
         if (result.success) {
 
             buttonText.textContent =
                 "Registration Successful";
 
-            statusMessage.textContent =
-                "Registration successful. Redirecting to WhatsApp...";
+            loader.classList.add("hidden");
 
 
-            // Give the Sheet a moment to finish,
-            // then redirect.
+            // Immediately redirect.
+            // No artificial delay.
 
-            setTimeout(() => {
+            if (gender === "Male") {
 
-                if (gender === "Male") {
+                window.location.href =
+                    BOYS_GROUP;
 
-                    window.location.href =
-                        BOYS_GROUP;
+            } else {
 
-                } else {
-
-                    window.location.href =
-                        GIRLS_GROUP;
-                }
-
-            }, 800);
-
+                window.location.href =
+                    GIRLS_GROUP;
+            }
 
         } else {
 
@@ -260,11 +296,16 @@ form.addEventListener("submit", async (event) => {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Registration error:",
+            error
+        );
+
 
         showError(
             "Unable to complete registration. Please try again."
         );
+
 
         submitButton.disabled = false;
 
