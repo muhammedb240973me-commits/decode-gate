@@ -1,78 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-          content="Decode GATE – From Preparation to Possibility. Online webinar as part of PROFSUMMIT 2026 by Campus Syndicate SSF Keralam.">
+          content="Decode GATE – From Preparation to Possibility.">
 
     <title>Decode GATE</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-    <!-- Theme Toggle -->
-    <button id="themeToggle"
-            class="theme-toggle"
-            aria-label="Toggle theme">
+    <!-- =========================
+         THEME TOGGLE
+    ========================== -->
+
+    <button
+        id="themeToggle"
+        class="theme-toggle"
+        aria-label="Toggle theme">
+
         ☾
+
     </button>
 
-    <main class="page">
 
-        <section class="card">
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
 
-            <!-- Header -->
-            <div class="header">
+    <section class="hero">
 
-                <div class="brand">
+        <div class="hero-pattern"></div>
 
-                    <h1>
-                        Decode <span>GATE</span>
-                    </h1>
+        <div class="hero-content">
 
-                    <p class="tagline">
-                        From Preparation to Possibility
-                    </p>
+
+
+            <!-- Main title -->
+
+            <h1>
+                Decode
+                <span>GATE</span>
+            </h1>
+
+
+            <!-- Tagline -->
+
+            <p class="hero-tagline">
+                From Preparation to Possibility
+            </p>
+
+            <!-- Date -->
+
+            <div class="event-info">
+
+                <div class="info-item">
+
+                    <strong>
+                        26th September 2026
+                    </strong>
+
+                    <span>
+                        8:00 PM
+                    </span>
+
                 </div>
 
-                
 
+                <div class="info-divider"></div>
+
+
+                <div class="info-item">
+
+                    <strong>
+                        Online Webinar
+                    </strong>
+
+                    <span>
+                        Google Meet
+                    </span>
+
+                </div>
 
             </div>
 
-            <div class="divider"></div>
 
-            <div class="event-date">
-                    26th September 2026
-                    <span>·</span>
-                    8:00 PM
+            <!-- Speaker -->
+
+            <div class="speaker">
+
+                <div class="speaker-photo">
+
+                    <img
+                        src="images/speaker.jpeg"
+                        alt="Dr. Muhammed Fasil C">
+
+                </div>
+
+
+                <div class="speaker-details">
+
+
+                    <h2>
+                        Dr. Muhammed Fasil C
+                    </h2>
+
+                    <p>
+                        PhD, IIT Bombay
+                    </p>
+
+                    <p>
+                        Assistant Professor
+                    </p>
+
+                    <p>
+                        Govt. Engineering College,
+                        Kozhikode
+                    </p>
+
+                </div>
+
             </div>
 
-            <div class="divider"></div>
 
-            <!-- Intro -->
-            <div class="intro">
+            <!-- CTA -->
 
-                <h2>Online Webinar Registration</h2>
+            <a
+                href="#registration"
+                class="hero-button">
+
+                REGISTER NOW
+
+                <span>
+                    ↓
+                </span>
+
+            </a>
+
+
+            <p class="scroll-text">
+                Scroll to register
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         REGISTRATION SECTION
+    ========================== -->
+
+    <section
+        id="registration"
+        class="registration-section">
+
+
+        <div class="registration-container">
+
+
+            <!-- Form heading -->
+
+            <div class="registration-heading">
+
+                <span>
+                    Decode GATE
+                </span>
+
+                <h2>
+                    Register for the
+                    <strong>Webinar</strong>
+                </h2>
 
                 <p>
-                    Join us for an insightful session designed to help
-                    students understand GATE preparation, opportunities
-                    and possibilities.
+                    Join us for an insightful session designed to help students understand GATE preparation, opportunities and possibilities.
                 </p>
 
             </div>
 
-            <!-- Registration Form -->
+
+
+            <!-- FORM -->
+
             <form id="registrationForm">
 
+
                 <!-- Full Name -->
+
                 <div class="form-group">
 
                     <label for="fullName">
@@ -84,14 +209,13 @@
                         id="fullName"
                         name="fullName"
                         placeholder="Enter your full name"
-                        required
-                        autocomplete="name"
-                    >
+                        required>
 
                 </div>
 
 
                 <!-- District -->
+
                 <div class="form-group">
 
                     <label for="district">
@@ -101,8 +225,7 @@
                     <select
                         id="district"
                         name="district"
-                        required
-                    >
+                        required>
 
                         <option value="">
                             Select your district
@@ -122,7 +245,7 @@
                         <option>Thiruvananthapuram</option>
                         <option>Thrissur</option>
                         <option>Wayanad</option>
-                        <option>Other</option>
+						<option>Other</option>
 
                     </select>
 
@@ -130,6 +253,7 @@
 
 
                 <!-- College -->
+
                 <div class="form-group">
 
                     <label for="collegeName">
@@ -141,19 +265,19 @@
                         id="collegeName"
                         name="collegeName"
                         placeholder="Enter your college name"
-                        required
-                        autocomplete="organization"
-                    >
+                        required>
 
                 </div>
 
 
                 <!-- Gender -->
+
                 <div class="form-group">
 
                     <label>
                         Gender
                     </label>
+
 
                     <div class="radio-container">
 
@@ -163,10 +287,11 @@
                                 type="radio"
                                 name="gender"
                                 value="Male"
-                                required
-                            >
+                                required>
 
-                            <span>Male</span>
+                            <span>
+                                Male
+                            </span>
 
                         </label>
 
@@ -176,10 +301,11 @@
                             <input
                                 type="radio"
                                 name="gender"
-                                value="Female"
-                            >
+                                value="Female">
 
-                            <span>Female</span>
+                            <span>
+                                Female
+                            </span>
 
                         </label>
 
@@ -189,6 +315,7 @@
 
 
                 <!-- Course -->
+
                 <div class="form-group">
 
                     <label for="course">
@@ -199,15 +326,14 @@
                         type="text"
                         id="course"
                         name="course"
-                        placeholder="Enter your Course"
-                        required
-                        autocomplete="off"
-                    >
+                        placeholder="Enter your course"
+                        required>
 
                 </div>
 
 
                 <!-- Phone -->
+
                 <div class="form-group">
 
                     <label for="phone">
@@ -222,10 +348,9 @@
                         inputmode="numeric"
                         maxlength="10"
                         pattern="[6-9][0-9]{9}"
-                        required
-                    >
+                        required>
 
-                    <small class="hint">
+                    <small>
                         Enter a valid 10-digit Indian mobile number.
                     </small>
 
@@ -233,42 +358,52 @@
 
 
                 <!-- Submit -->
+
                 <button
                     type="submit"
                     id="submitButton"
-                    class="submit-button"
-                >
+                    class="submit-button">
 
                     <span id="buttonText">
-                        Register Now
+                        REGISTER NOW
                     </span>
 
-                    <span id="loader"
-                          class="loader hidden">
+                    <span
+                        id="loader"
+                        class="loader hidden">
                     </span>
 
                 </button>
 
-                <p id="statusMessage"
-                   class="status-message">
+
+                <p
+                    id="statusMessage"
+                    class="status-message">
                 </p>
 
             </form>
 
-            <!-- Footer -->
-            <footer>
+        </div>
 
-                <p>
-                    © PROFSUMMIT 2026
-                </p>
+    </section>
 
-            </footer>
 
-        </section>
 
-    </main>
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <strong>
+            ©PROFSUMMIT 2026
+        </strong>
+
+    </footer>
+
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
