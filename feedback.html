@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Decode GATE Feedback">
+
+    <title>
+        Decode GATE | Feedback
+    </title>
+
+    <link rel="stylesheet" href="feedback.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- Theme Toggle -->
+
+    <button
+        id="themeToggle"
+        class="theme-toggle"
+        aria-label="Toggle theme">
+
+        ☾
+
+    </button>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="page">
+
+
+        <section class="feedback-card">
+
+
+            <!-- Banner -->
+
+            <div class="banner">
+
+                <div class="banner-pattern"></div>
+
+                <div class="banner-content">
+
+                    <h1>
+                        Decode
+                        <span>GATE</span>
+                    </h1>
+
+                    <p>
+                        From Preparation to Possibility
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Feedback Content -->
+
+            <div class="feedback-content">
+
+
+                <div
+                    id="feedbackFormSection">
+
+
+                    <h2>
+                        Share Your Feedback
+                    </h2>
+
+
+                    <p class="intro">
+
+                        Your feedback helps us make
+                        future programmes better.
+
+                    </p>
+
+
+                    <form
+                        id="feedbackForm">
+
+
+                        <label for="feedback">
+
+                            Your Feedback
+
+                        </label>
+
+
+                        <textarea
+                            id="feedback"
+                            name="feedback"
+                            rows="7"
+                            maxlength="1000"
+                            placeholder="Write your feedback here..."
+                            required>
+                        </textarea>
+
+
+                        <div class="character-count">
+
+                            <span id="characterCount">
+                                0
+                            </span>
+                            / 1000
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            id="submitButton">
+
+                            <span id="buttonText">
+                                SUBMIT FEEDBACK
+                            </span>
+
+                            <span
+                                id="loader"
+                                class="loader hidden">
+                            </span>
+
+                        </button>
+
+
+                        <p
+                            id="statusMessage"
+                            class="status-message">
+                        </p>
+
+
+                    </form>
+
+                </div>
+
+
+                <!-- SUCCESS MESSAGE -->
+
+                <div
+                    id="successMessage"
+                    class="success-message hidden">
+
+                    <div class="success-icon">
+                        ✓
+                    </div>
+
+                    <h2>
+                        Thank You!
+                    </h2>
+
+                    <p>
+                        Thank You for your valuable advice.
+                    </p>
+
+                    <p>
+                        Hopefully meet you at
+                        <strong>PROFSUMMIT'26</strong>
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+    <footer>
+
+        <strong>
+            ©PROFSUMMIT 2026
+        </strong>
+
+    </footer>
+
+
+    <script src="feedback.js"></script>
+
+</body>
+
+</html>
