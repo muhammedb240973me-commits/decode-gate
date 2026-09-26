@@ -25,6 +25,10 @@
 
 }
 
+/* Utility */
+.hidden {
+    display: none !important;
+}
 
 /* =========================================
    DARK THEME
@@ -437,6 +441,231 @@ textarea:focus {
     font-size: 11px;
 }
 
+/* =========================================
+   RATING SECTION
+========================================= */
+
+.rating-section {
+
+    margin-top: 30px;
+    margin-bottom: 32px;
+
+    padding: 22px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    background: var(--input);
+}
+
+
+.rating-heading {
+
+    margin-bottom: 22px;
+}
+
+
+.rating-heading h3 {
+
+    font-size: 17px;
+
+    color: var(--text);
+
+    margin-bottom: 5px;
+}
+
+
+.rating-heading p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* Individual rating */
+
+.rating-group {
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.rating-group:last-of-type {
+
+    border-bottom: none;
+}
+
+
+.rating-question {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+    color: var(--text);
+
+    font-size: 14px;
+}
+
+
+.rating-question span {
+
+    color: var(--blue);
+
+    font-weight: 800;
+}
+
+
+/* Stars */
+
+.star-rating {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.star-rating button {
+
+    width: 38px;
+
+    height: 38px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #cbd5e1;
+
+    font-size: 27px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        transform 0.15s ease,
+        background 0.15s ease;
+}
+
+
+.star-rating button:hover {
+
+    transform: scale(1.12);
+
+    background: rgba(255,201,40,0.12);
+
+}
+
+
+.star-rating button.active {
+
+    color: var(--yellow);
+
+}
+
+
+.rating-label {
+
+    min-height: 18px;
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* Rating guide */
+
+.rating-guide {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px 14px;
+
+    margin-top: 18px;
+
+    padding-top: 17px;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .rating-section {
+
+        padding: 17px;
+
+    }
+
+    .rating-group {
+
+        padding: 15px 0;
+
+    }
+
+    .rating-question {
+
+        font-size: 13px;
+
+    }
+
+    .star-rating button {
+
+        width: 36px;
+
+        height: 36px;
+
+        font-size: 25px;
+
+    }
+
+    .rating-guide {
+
+        display: block;
+
+    }
+
+    .rating-guide div {
+
+        margin-bottom: 4px;
+
+    }
+
+}
 
 /* =========================================
    BUTTON

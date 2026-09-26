@@ -3,7 +3,7 @@
 // ========================================
 
 const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbz2BpXYW06yFQwi4TMh97oypl3Ccb3IabHTgwgIPCbWT2NWzIruoJbq_UCW7iknG2px8g/exec";
+    "https://script.google.com/macros/s/AKfycbyq3AXGYICh4rqjEPzIDWHk00ifcTF3K1PMPqpQFGAQcCMJiElRJn9o5xwiZo1uUV97GA/exec";
 
 
 // ========================================
@@ -101,6 +101,251 @@ themeToggle.addEventListener(
 
     }
 );
+
+// ========================================
+// RATING SUMMARY
+// ========================================
+
+async function loadRatingSummary() {
+
+    const ratingSummary =
+        document.getElementById(
+            "ratingSummary"
+        );
+
+    try {
+
+        const response =
+            await fetch(
+                SCRIPT_URL +
+                "?action=ratings&t=" +
+                Date.now()
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load ratings."
+            );
+        }
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !result.success ||
+            !result.averages
+        ) {
+
+            throw new Error(
+                "Invalid rating data."
+            );
+        }
+
+
+        const averages =
+            result.averages;
+
+
+        // Show section
+
+        ratingSummary.classList.remove(
+            "hidden"
+        );
+
+
+        // Individual ratings
+
+        setRating(
+            "speaker",
+            averages.speaker
+        );
+
+        setRating(
+            "clarity",
+            averages.clarity
+        );
+
+        setRating(
+            "usefulness",
+            averages.usefulness
+        );
+
+        setRating(
+            "overallExperience",
+            averages.overall
+        );
+
+        setRating(
+            "coordination",
+            averages.coordination
+        );
+
+
+        // Overall average of all five categories
+
+        const allRatings = [
+
+            Number(averages.speaker),
+
+            Number(averages.clarity),
+
+            Number(averages.usefulness),
+
+            Number(averages.overall),
+
+            Number(averages.coordination)
+
+        ].filter(function(value) {
+
+            return value > 0;
+
+        });
+
+
+        if (allRatings.length > 0) {
+
+            const overallAverage =
+                allRatings.reduce(
+                    function(total, value) {
+                        return total + value;
+                    },
+                    0
+                ) / allRatings.length;
+
+
+            const rounded =
+                Number(
+                    overallAverage.toFixed(2)
+                );
+
+
+            document.getElementById(
+                "overallAverage"
+            ).textContent = rounded.toFixed(2);
+
+
+            document.getElementById(
+                "overallStars"
+            ).textContent =
+                createStars(rounded);
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Rating error:",
+            error
+        );
+
+        /*
+         * Do not show an error message on the
+         * public comments page.
+         *
+         * The comments can continue working
+         * even if the rating chart fails.
+         */
+
+        ratingSummary.classList.add(
+            "hidden"
+        );
+
+    }
+
+}
+
+// ========================================
+// SET RATING
+// ========================================
+
+function setRating(
+    name,
+    value
+) {
+
+    const numericValue =
+        Number(value);
+
+
+    const averageElement =
+        document.getElementById(
+            name + "Average"
+        );
+
+    const barElement =
+        document.getElementById(
+            name + "Bar"
+        );
+
+
+    if (
+        !averageElement ||
+        !barElement ||
+        !Number.isFinite(numericValue)
+    ) {
+
+        return;
+    }
+
+
+    averageElement.textContent =
+        numericValue.toFixed(2);
+
+
+    /*
+     * 5 stars = 100%
+     *
+     * Example:
+     * 4.5 / 5 = 90%
+     */
+
+    const percentage =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                (numericValue / 5) * 100
+            )
+        );
+
+
+    barElement.style.width =
+        percentage + "%";
+
+}
+
+// ========================================
+// STAR DISPLAY
+// ========================================
+
+function createStars(
+    rating
+) {
+
+    const rounded =
+        Math.round(rating);
+
+    const filled =
+        Math.max(
+            0,
+            Math.min(
+                5,
+                rounded
+            )
+        );
+
+
+    return (
+        "★".repeat(filled) +
+        "☆".repeat(5 - filled)
+    );
+
+}
 
 
 // ========================================
@@ -449,3 +694,4 @@ retryButton.addEventListener(
 // ========================================
 
 loadComments();
+loadRatingSummary();

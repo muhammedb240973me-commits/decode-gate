@@ -3,7 +3,7 @@
 // ========================================
 
 const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbz2BpXYW06yFQwi4TMh97oypl3Ccb3IabHTgwgIPCbWT2NWzIruoJbq_UCW7iknG2px8g/exec";
+    "https://script.google.com/macros/s/AKfycbyq3AXGYICh4rqjEPzIDWHk00ifcTF3K1PMPqpQFGAQcCMJiElRJn9o5xwiZo1uUV97GA/exec";
 
 
 // ========================================
@@ -51,6 +51,21 @@ const themeToggle =
     document.getElementById(
         "themeToggle"
     );
+
+const speakerRating =
+    document.getElementById("speakerRating");
+
+const clarityRating =
+    document.getElementById("clarityRating");
+
+const usefulnessRating =
+    document.getElementById("usefulnessRating");
+
+const overallRating =
+    document.getElementById("overallRating");
+
+const coordinationRating =
+    document.getElementById("coordinationRating");
 
 
 // ========================================
@@ -125,6 +140,84 @@ feedback.addEventListener(
     }
 );
 
+// ========================================
+// STAR RATINGS
+// ========================================
+
+const ratingLabels = {
+    1: "⭐ Very Poor",
+    2: "⭐⭐ Poor",
+    3: "⭐⭐⭐ Average",
+    4: "⭐⭐⭐⭐ Good",
+    5: "⭐⭐⭐⭐⭐ Excellent"
+};
+
+
+document.querySelectorAll(".star-rating")
+    .forEach(function(ratingGroup) {
+
+        const buttons =
+            ratingGroup.querySelectorAll("button");
+
+        const ratingName =
+            ratingGroup.dataset.rating;
+
+        const hiddenInput =
+            document.getElementById(
+                ratingName + "Rating"
+            );
+
+        const label =
+            document.getElementById(
+                ratingName + "Label"
+            );
+
+
+        buttons.forEach(function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    const value =
+                        Number(
+                            button.dataset.value
+                        );
+
+
+                    // Store numeric value
+                    hiddenInput.value =
+                        value;
+
+
+                    // Highlight stars
+                    buttons.forEach(
+                        function(star) {
+
+                            const starValue =
+                                Number(
+                                    star.dataset.value
+                                );
+
+                            star.classList.toggle(
+                                "active",
+                                starValue <= value
+                            );
+
+                        }
+                    );
+
+
+                    // Show selected rating
+                    label.textContent =
+                        ratingLabels[value];
+
+                }
+            );
+
+        });
+
+    });
 
 // ========================================
 // SUBMIT
@@ -152,11 +245,42 @@ form.addEventListener(
         const feedbackText =
             feedback.value.trim();
 
+        const speaker =
+            speakerRating.value;
+        
+        const clarity =
+            clarityRating.value;
+
+        const usefulness =
+            usefulnessRating.value;
+
+        const overall =
+            overallRating.value;
+
+        const coordination =
+            coordinationRating.value;
+
+
 
         if (!feedbackText) {
 
             showError(
                 "Please enter your feedback."
+            );
+
+            return;
+        }
+
+        if (
+            !speaker ||
+            !clarity ||
+            !usefulness ||
+            !overall ||
+            !coordination
+        ) {
+
+            showError(
+                "Please rate all five aspects before submitting."
             );
 
             return;
@@ -191,6 +315,31 @@ form.addEventListener(
         formData.append(
             "college",
             college
+        );
+
+        formData.append(
+            "speakerRating",
+            speaker
+        );
+
+        formData.append(
+            "clarityRating",
+            clarity
+        );
+
+        formData.append(
+            "usefulnessRating",
+            usefulness
+        );
+
+        formData.append(
+            "overallRating",
+            overall
+        );
+
+        formData.append(
+            "coordinationRating",
+            coordination
         );
 
 
