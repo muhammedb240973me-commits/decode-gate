@@ -3,7 +3,7 @@
 // ========================================
 
 const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbx_vKlG0gPJKDkmfrt0CYcLGucuMaBsuILRK_LkhQGY6dVJ6HFKauZN8rKLP8pi-Qcy/exec";
+    "https://script.google.com/macros/s/AKfycbwxZC9NXl85B9UiRzMtjDkqCkmK6P_EIzT9CzRAw7Q_i_eEcoWR8XiAx6NIle9fp9w4lQ/exec";
 
 const BOYS_GROUP =
     "https://chat.whatsapp.com/HON5ENECxTzD3eHO9seQNl";
