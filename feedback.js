@@ -3,7 +3,7 @@
 // ========================================
 
 const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbzmJjjrOr5lZNn2iJVuKv5Tkjh-wYFjI1-rjCc8BOkqd2IPo7gq-tJn4PosOjJWceoKHg/exec";
+    "https://script.google.com/macros/s/AKfycbz2BpXYW06yFQwi4TMh97oypl3Ccb3IabHTgwgIPCbWT2NWzIruoJbq_UCW7iknG2px8g/exec";
 
 
 // ========================================
@@ -12,6 +12,12 @@ const SCRIPT_URL =
 
 const form =
     document.getElementById("feedbackForm");
+
+const nameInput =
+    document.getElementById("name");
+
+const collegeInput =
+    document.getElementById("college");
 
 const feedback =
     document.getElementById("feedback");
@@ -137,6 +143,11 @@ form.addEventListener(
             return;
         }
 
+        const name =
+            nameInput.value.trim();
+
+        const college =
+            collegeInput.value.trim();
 
         const feedbackText =
             feedback.value.trim();
@@ -165,7 +176,6 @@ form.addEventListener(
             "hidden"
         );
 
-        statusMessage.textContent = "";
 
 
         // Prepare data
@@ -173,10 +183,14 @@ form.addEventListener(
         const formData =
             new URLSearchParams();
 
-
         formData.append(
-            "action",
-            "feedback"
+            "name",
+            name
+        );
+        
+        formData.append(
+            "college",
+            college
         );
 
 
@@ -201,11 +215,6 @@ form.addEventListener(
             const text =
                 await response.text();
 
-
-            console.log(
-                "Feedback response:",
-                text
-            );
 
 
             const result =

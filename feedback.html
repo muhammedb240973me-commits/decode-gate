@@ -90,36 +90,80 @@
                     </p>
 
 
-                    <form
-                        id="feedbackForm">
+                    <form id="feedbackForm">
 
+                        <!-- Name -->
 
-                        <label for="feedback">
+                        <div class="form-group">
 
-                            Your Feedback
+                            <label for="name">
+                                Name
+                                <span class="optional">(Optional)</span>
+                            </label>
 
-                        </label>
-
-
-                        <textarea
-                            id="feedback"
-                            name="feedback"
-                            rows="7"
-                            maxlength="1000"
-                            placeholder="Write your feedback here..."
-                            required>
-                        </textarea>
-
-
-                        <div class="character-count">
-
-                            <span id="characterCount">
-                                0
-                            </span>
-                            / 1000
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                maxlength="100"
+                                placeholder="Enter your name">
 
                         </div>
 
+
+                        <!-- College -->
+
+                        <div class="form-group">
+
+                            <label for="college">
+                                College
+                                <span class="optional">(Optional)</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="college"
+                                name="college"
+                                maxlength="150"
+                                placeholder="Enter your college name">
+
+                        </div>
+
+
+                        <!-- Feedback -->
+
+                        <div class="form-group">
+
+                            <label for="feedback">
+                                Your Feedback
+                                <span class="required">*</span>
+                            </label>
+
+                            <textarea
+                                id="feedback"
+                                name="feedback"
+                                rows="7"
+                                maxlength="1000"
+                                placeholder="Share your experience, suggestions or feedback..."
+                                required></textarea>
+
+                            <div class="feedback-note">
+                                Feedback is required.
+                            </div>
+
+                            <div class="character-count">
+
+                                <span id="characterCount">
+                                    0
+                                </span>
+                                / 1000
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Submit -->
 
                         <button
                             type="submit"
@@ -142,7 +186,6 @@
                             class="status-message">
                         </p>
 
-
                     </form>
 
                 </div>
@@ -154,13 +197,56 @@
                     id="successMessage"
                     class="success-message hidden">
 
+
+                    <!-- Program details -->
+
+                    <div class="success-program">
+
+                        <div class="success-label">
+                            PROFSUMMIT 2026
+                        </div>
+
+                        <h2>
+                            Decode <span>GATE</span>
+                        </h2>
+
+                        <p>
+                            From Preparation to Possibility
+                        </p>
+
+                        <div class="success-details">
+
+                        <strong>
+                            26th September 2026
+                        </strong>
+
+                        <span>·</span>
+
+                        <strong>
+                            8:00 PM
+                        </strong>
+
+                    </div>
+
+                    <small>
+                        Online Webinar · Google Meet
+                    </small>
+
+                </div>
+
+
+                <div class="success-line"></div>
+
+
+                <!-- Thank you -->
+
                     <div class="success-icon">
                         ✓
                     </div>
 
-                    <h2>
+                    <h3>
                         Thank You!
-                    </h2>
+                    </h3>
 
                     <p>
                         Thank You for your valuable advice.
@@ -170,6 +256,27 @@
                         Hopefully meet you at
                         <strong>PROFSUMMIT'26</strong>
                     </p>
+
+
+                <!-- Explore -->
+
+                    <div class="explore">
+
+                        <span>
+                            Explore more
+                        </span>
+
+                        <a
+                            href="https://profsummit.in"
+                            class="explore-button">
+
+                            VISIT PROFSUMMIT.IN
+
+                            <span>↗</span>
+
+                        </a>
+
+                    </div>
 
                 </div>
 

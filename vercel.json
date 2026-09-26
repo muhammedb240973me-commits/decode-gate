@@ -3,6 +3,10 @@
     {
       "source": "/feedback",
       "destination": "/feedback.html"
+    },
+    {
+      "source": "/comments",
+      "destination": "/comments.html"
     }
   ]
 }

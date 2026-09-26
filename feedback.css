@@ -339,13 +339,14 @@ label {
 }
 
 
+/* =========================================
+   FORM INPUTS
+========================================= */
+
+input[type="text"],
 textarea {
 
     width: 100%;
-
-    resize: vertical;
-
-    min-height: 170px;
 
     padding: 15px;
 
@@ -366,8 +367,54 @@ textarea {
     outline: none;
 
     transition: 0.2s;
+
 }
 
+
+/* Name & College */
+
+input[type="text"] {
+
+    height: 52px;
+
+}
+
+
+/* Feedback */
+
+textarea {
+
+    min-height: 170px;
+
+    resize: vertical;
+
+}
+
+
+/* Focus effect */
+
+input[type="text"]:focus,
+textarea:focus {
+
+    border-color: var(--blue);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(7,84,165,0.12);
+
+}
+
+
+/* Placeholder */
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+
+    color: var(--muted);
+
+    opacity: 0.75;
+
+}
 
 textarea:focus {
 
@@ -651,4 +698,238 @@ footer strong {
     color: white;
 
     margin-bottom: 5px;
+}
+
+/* =========================================
+   OPTIONAL / REQUIRED LABELS
+========================================= */
+
+.optional {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    margin-left: 5px;
+}
+
+
+.required {
+
+    color: #d9383e;
+
+    margin-left: 3px;
+}
+
+
+.feedback-note {
+
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+/* =========================================
+   SUCCESS PROGRAM DETAILS
+========================================= */
+
+.success-program {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+
+.success-label {
+
+    color: var(--blue);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+
+.success-program h2 {
+
+    font-size: 38px;
+
+    line-height: 1;
+
+    font-weight: 950;
+
+    letter-spacing: -1.5px;
+
+    color: var(--text);
+}
+
+
+.success-program h2 span {
+
+    color: var(--blue);
+}
+
+
+.success-program p {
+
+    margin-top: 9px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.success-details {
+
+    margin-top: 18px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--blue);
+
+    font-size: 13px;
+}
+
+
+.success-program small {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+.success-line {
+
+    height: 1px;
+
+    background: var(--border);
+
+    margin: 25px 0;
+}
+
+
+/* =========================================
+   THANK YOU
+========================================= */
+
+.success-message > h3 {
+
+    text-align: center;
+
+    font-size: 29px;
+
+    margin-bottom: 12px;
+}
+
+
+.success-message > p {
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+.success-message > p strong {
+
+    color: var(--blue);
+}
+
+
+/* =========================================
+   EXPLORE MORE
+========================================= */
+
+.explore {
+
+    margin-top: 35px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid var(--border);
+
+    text-align: center;
+}
+
+
+.explore > span {
+
+    display: block;
+
+    margin-bottom: 13px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.explore-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 13px 21px;
+
+    background: var(--blue);
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.8px;
+
+    transition: 0.2s;
+}
+
+
+.explore-button:hover {
+
+    background: var(--blue-dark);
+
+    transform: translateY(-2px);
 }
