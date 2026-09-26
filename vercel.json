@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/join",
+      "destination": "http://meet.google.com/inx-epck-ysj",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/feedback",
