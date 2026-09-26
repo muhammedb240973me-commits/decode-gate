@@ -1,4 +1,3 @@
-
 // ========================================
 // CONFIGURATION
 // ========================================
@@ -37,7 +36,20 @@ const themeToggle =
 
 
 // ========================================
-// THEME TOGGLE
+// SUBMISSION LOCK
+// ========================================
+
+// This is extremely important.
+//
+// Once submission starts, this becomes true.
+// Even if the user clicks 10 times,
+// only ONE request will be sent.
+
+let isSubmitting = false;
+
+
+// ========================================
+// THEME
 // ========================================
 
 const savedTheme =
@@ -84,11 +96,6 @@ phoneInput.addEventListener("input", () => {
     phoneInput.value =
         phoneInput.value.replace(/\D/g, "");
 
-    if (phoneInput.value.length > 10) {
-
-        phoneInput.value =
-            phoneInput.value.substring(0, 10);
-    }
 });
 
 
@@ -96,230 +103,285 @@ phoneInput.addEventListener("input", () => {
 // FORM SUBMISSION
 // ========================================
 
-form.addEventListener("submit", async (event) => {
+form.addEventListener(
+    "submit",
+    async function (event) {
 
-    event.preventDefault();
-
-    statusMessage.textContent = "";
-    statusMessage.className = "status-message";
-
-
-    // ------------------------------------
-    // Get form values
-    // ------------------------------------
-
-    const fullName =
-        document.getElementById("fullName")
-        .value.trim();
-
-    const district =
-        document.getElementById("district")
-        .value;
-
-    const collegeName =
-        document.getElementById("collegeName")
-        .value.trim();
-
-    const gender =
-        document.querySelector(
-            'input[name="gender"]:checked'
-        )?.value;
-
-    const course =
-        document.getElementById("course")
-        .value.trim();
-
-    const phone =
-        document.getElementById("phone")
-        .value.trim();
+        event.preventDefault();
 
 
-    // ------------------------------------
-    // Validation
-    // ------------------------------------
+        // ====================================
+        // STOP MULTIPLE SUBMISSIONS
+        // ====================================
 
-    if (
-        !fullName ||
-        !district ||
-        !collegeName ||
-        !gender ||
-        !course ||
-        !phone
-    ) {
-
-        showError(
-            "Please fill in all the required fields."
-        );
-
-        return;
-    }
-
-
-    if (!/^[6-9][0-9]{9}$/.test(phone)) {
-
-        showError(
-            "Please enter a valid 10-digit Indian mobile number."
-        );
-
-        return;
-    }
-
-
-    // ------------------------------------
-    // Loading state
-    // ------------------------------------
-
-    submitButton.disabled = true;
-
-    buttonText.textContent =
-        "Registering...";
-
-    loader.classList.remove("hidden");
-
-
-    // ------------------------------------
-    // Prepare form data
-    // ------------------------------------
-
-    const formData = new URLSearchParams();
-
-    formData.append(
-        "fullName",
-        fullName
-    );
-
-    formData.append(
-        "district",
-        district
-    );
-
-    formData.append(
-        "collegeName",
-        collegeName
-    );
-
-    formData.append(
-        "gender",
-        gender
-    );
-
-    formData.append(
-        "course",
-        course
-    );
-
-    formData.append(
-        "phone",
-        phone
-    );
-
-
-    try {
-
-        // --------------------------------
-        // Send to Google Apps Script
-        // --------------------------------
-
-        const response = await fetch(
-            SCRIPT_URL,
-            {
-                method: "POST",
-
-                body: formData
-            }
-        );
-
-
-        const text =
-            await response.text();
-
-        console.log(
-            "Apps Script response:",
-            text
-        );
-
-
-        let result;
-
-        try {
-
-            result =
-                JSON.parse(text);
-
-        } catch (error) {
-
-            console.error(
-                "Invalid Apps Script response:",
-                text
-            );
-
-            throw new Error(
-                "Invalid response from Google Apps Script."
-            );
+        if (isSubmitting) {
+            return;
         }
 
 
-        // --------------------------------
-        // Registration successful
-        // --------------------------------
+        // Lock immediately
 
-        if (result.success) {
+        isSubmitting = true;
 
-            buttonText.textContent =
-                "Registration Successful";
+        submitButton.disabled = true;
 
-            loader.classList.add("hidden");
+        form.classList.add("submitting");
 
 
-            // Immediately redirect.
-            // No artificial delay.
+        statusMessage.textContent = "";
 
-            if (gender === "Male") {
+        statusMessage.className =
+            "status-message";
 
-                window.location.href =
-                    BOYS_GROUP;
 
-            } else {
+        // ====================================
+        // GET VALUES
+        // ====================================
 
-                window.location.href =
-                    GIRLS_GROUP;
+        const fullName =
+            document
+                .getElementById("fullName")
+                .value
+                .trim();
+
+
+        const district =
+            document
+                .getElementById("district")
+                .value;
+
+
+        const collegeName =
+            document
+                .getElementById("collegeName")
+                .value
+                .trim();
+
+
+        const gender =
+            document.querySelector(
+                'input[name="gender"]:checked'
+            )?.value;
+
+
+        const course =
+            document
+                .getElementById("course")
+                .value
+                .trim();
+
+
+        const phone =
+            document
+                .getElementById("phone")
+                .value
+                .trim();
+
+
+        // ====================================
+        // VALIDATION
+        // ====================================
+
+        if (
+            !fullName ||
+            !district ||
+            !collegeName ||
+            !gender ||
+            !course ||
+            !phone
+        ) {
+
+            showError(
+                "Please fill in all the required fields."
+            );
+
+            unlockForm();
+
+            return;
+        }
+
+
+        if (
+            !/^[6-9][0-9]{9}$/.test(phone)
+        ) {
+
+            showError(
+                "Please enter a valid 10-digit mobile number."
+            );
+
+            unlockForm();
+
+            return;
+        }
+
+
+        // ====================================
+        // SHOW LOADING
+        // ====================================
+
+        buttonText.textContent =
+            "Submitting...";
+
+        loader.classList.remove("hidden");
+
+
+        // ====================================
+        // PREPARE DATA
+        // ====================================
+
+        const formData =
+            new URLSearchParams();
+
+        formData.append(
+            "fullName",
+            fullName
+        );
+
+        formData.append(
+            "district",
+            district
+        );
+
+        formData.append(
+            "collegeName",
+            collegeName
+        );
+
+        formData.append(
+            "gender",
+            gender
+        );
+
+        formData.append(
+            "course",
+            course
+        );
+
+        formData.append(
+            "phone",
+            phone
+        );
+
+
+        // ====================================
+        // SEND TO GOOGLE APPS SCRIPT
+        // ====================================
+
+        try {
+
+            const response =
+                await fetch(
+                    SCRIPT_URL,
+                    {
+                        method: "POST",
+
+                        body: formData,
+
+                        // Allows the browser to keep
+                        // the request alive during
+                        // page navigation where supported.
+                        keepalive: true
+                    }
+                );
+
+
+            const text =
+                await response.text();
+
+
+            console.log(
+                "Registration response:",
+                text
+            );
+
+
+            let result;
+
+
+            try {
+
+                result =
+                    JSON.parse(text);
+
+            } catch (error) {
+
+                throw new Error(
+                    "Invalid server response."
+                );
             }
 
-        } else {
+
+            // ==================================
+            // SUCCESS
+            // ==================================
+
+            if (result.success) {
+
+                buttonText.textContent =
+                    "Registered ✓";
+
+                loader.classList.add(
+                    "hidden"
+                );
+
+
+                statusMessage.textContent =
+                    "Registration successful. Redirecting...";
+
+
+                // No artificial 800ms / 1000ms delay.
+
+                if (gender === "Male") {
+
+                    window.location.replace(
+                        BOYS_GROUP
+                    );
+
+                } else {
+
+                    window.location.replace(
+                        GIRLS_GROUP
+                    );
+                }
+
+
+                return;
+            }
+
+
+            // ==================================
+            // SERVER ERROR
+            // ==================================
 
             throw new Error(
                 result.message ||
                 "Registration failed."
             );
+
+
+        } catch (error) {
+
+            console.error(
+                "Registration error:",
+                error
+            );
+
+
+            showError(
+                "Unable to complete registration. Please try again."
+            );
+
+
+            unlockForm();
+
         }
 
-
-    } catch (error) {
-
-        console.error(
-            "Registration error:",
-            error
-        );
-
-
-        showError(
-            "Unable to complete registration. Please try again."
-        );
-
-
-        submitButton.disabled = false;
-
-        buttonText.textContent =
-            "Register Now";
-
-        loader.classList.add("hidden");
     }
-
-});
+);
 
 
 // ========================================
-// ERROR MESSAGE
+// ERROR
 // ========================================
 
 function showError(message) {
@@ -329,4 +391,27 @@ function showError(message) {
 
     statusMessage.className =
         "status-message error";
+}
+
+
+// ========================================
+// UNLOCK FORM
+// ========================================
+
+function unlockForm() {
+
+    isSubmitting = false;
+
+    submitButton.disabled = false;
+
+    form.classList.remove(
+        "submitting"
+    );
+
+    buttonText.textContent =
+        "REGISTER NOW";
+
+    loader.classList.add(
+        "hidden"
+    );
 }

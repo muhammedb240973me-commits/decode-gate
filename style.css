@@ -947,3 +947,22 @@ footer strong {
     }
 
 }
+
+/* =========================================
+   FORM SUBMIT PROTECTION
+========================================= */
+
+#registrationForm.submitting input,
+#registrationForm.submitting select,
+#registrationForm.submitting button,
+#registrationForm.submitting .radio-option {
+    cursor: not-allowed;
+}
+
+
+/* Prevent accidental interaction
+   while registration is processing */
+
+#registrationForm.submitting {
+    pointer-events: none;
+}
