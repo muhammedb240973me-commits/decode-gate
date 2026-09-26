@@ -331,14 +331,14 @@ body {
    FORM
 ========================================= */
 
+.form-group {
+    margin-bottom: 22px;
+}
+
 label {
-
     display: block;
-
     margin-bottom: 9px;
-
     font-size: 14px;
-
     font-weight: 700;
 }
 
